@@ -1,5 +1,6 @@
 package pup.quiz.server.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -16,11 +17,12 @@ public class Punishments {
     @Column(name = "name")
     public String Name;
 
-//    @ManyToMany()
-//    @JoinTable(
-//            name = "p_sets",
-//            joinColumns = @JoinColumn(name = "punishment"),
-//            inverseJoinColumns = @JoinColumn(name = "set")
-//    )
-//    public Set<PunishmentsSets> Sets;
+    @JsonIgnore
+    @ManyToMany()
+    @JoinTable(
+            name = "p_sets",
+            joinColumns = @JoinColumn(name = "id_punishment"),
+            inverseJoinColumns = @JoinColumn(name = "id_set")
+    )
+    public Set<PunishmentsSets> Sets;
 }

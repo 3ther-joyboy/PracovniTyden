@@ -13,6 +13,6 @@ public class PunishmentsSets {
     @Column(name = "id")
     public Long Id;
 
-//    @ManyToMany(mappedBy = "Sets")
-//    public Set<Punishments> Punish;
+    @ManyToMany(mappedBy = "Sets")
+    public Set<Punishments> Punish;
 }
