@@ -1,5 +1,6 @@
 package pup.quiz.server.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,6 +18,7 @@ public class User {
 
     public int Score;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "session", nullable = false)
     public Session session;
