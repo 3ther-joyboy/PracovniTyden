@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "sessions")
+@Table(name = "user")
 public class User {
 
     @jakarta.persistence.Id
@@ -13,9 +13,8 @@ public class User {
     public Long Id;
 
 
-    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "session", nullable = false)
+    @JoinColumn(name = "user_session", nullable = false)
     public Session session;
 
 
