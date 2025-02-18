@@ -1,10 +1,17 @@
 package pup.quiz.server.model;
 import java.security.SecureRandom;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
+import java.util.Set;
+
+@Entity
+@Table(name = "sessions")
 public class Session {
     private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-        public static String generateCode() {
+    public static String GenerateCode() {
         SecureRandom random = new SecureRandom();
         StringBuilder code = new StringBuilder(6);
 
@@ -15,4 +22,17 @@ public class Session {
 
         return code.toString();
     }
+
+    @jakarta.persistence.Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    public Long Id;
+
+
+    @Column(name = "code")
+    public String Code;
+
+
+    @OneToMany(mappedBy = "session")
+    public Set<User> Sets;
 }
