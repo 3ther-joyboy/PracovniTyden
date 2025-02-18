@@ -7,6 +7,8 @@ import java.util.Set;
 @Entity
 @Table(name = "punishments")
 public class Punishments {
+
+    @jakarta.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public Long Id;
