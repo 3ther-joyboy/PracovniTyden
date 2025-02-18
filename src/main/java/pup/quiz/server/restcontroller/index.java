@@ -11,6 +11,7 @@ import pup.quiz.server.repo.PunishmentRepo;
 import pup.quiz.server.repo.SessionRepo;
 
 import java.io.IOException;
+import java.util.Collections;
 
 @RestController
 @RequestMapping("/servertest")
@@ -30,6 +31,7 @@ public class index {
     @GetMapping(value = "/pocetlidi")
     public String ass(){
         Session session = new Session();
+        session.Sets = Collections.emptySet();
         String code = Generator.GenerateCode();
         session.Code = code;
         try {

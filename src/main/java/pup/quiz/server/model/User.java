@@ -1,10 +1,10 @@
 package pup.quiz.server.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "sessions")
+@Table(name = "user")
 public class User {
 
     @jakarta.persistence.Id
@@ -13,10 +13,9 @@ public class User {
     public Long Id;
 
 
-    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "session", nullable = false)
-    public Session session;
+    @JoinColumn(name="session_user", nullable=false)
+    public Session game;
 
 
 }
