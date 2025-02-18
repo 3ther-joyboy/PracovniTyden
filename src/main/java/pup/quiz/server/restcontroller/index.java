@@ -1,8 +1,10 @@
 package pup.quiz.server.restcontroller;
 
+import org.apache.coyote.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pup.quiz.server.Generator;
 import pup.quiz.server.model.Punishments;
@@ -11,10 +13,11 @@ import pup.quiz.server.repo.PunishmentRepo;
 import pup.quiz.server.repo.SessionRepo;
 
 import java.io.IOException;
-import java.util.Collections;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/servertest")
+@CrossOrigin(origins = "*")
 public class index {
 
     private static final Logger log = LoggerFactory.getLogger(index.class);
@@ -31,7 +34,6 @@ public class index {
     @GetMapping(value = "/pocetlidi")
     public String ass(){
         Session session = new Session();
-        session.Sets = Collections.emptySet();
         String code = Generator.GenerateCode();
         session.Code = code;
         try {
@@ -43,13 +45,19 @@ public class index {
     }
 
     @PostMapping(value = "/{name}")
-    public void jmnjno(@PathVariable(name = "name") String jmenoHrace) {
+    public ResponseEntity<String> jmnjno(@PathVariable(name = "name") String jmenoHrace) {
         System.out.printf(jmenoHrace);
+
+
 
         Punishments save = new Punishments();
         save.Name = jmenoHrace;
-        databazeTable.save(save);
-
+        try {
+            databazeTable.save(null);
+            return ResponseEntity.ok("User " + jmenoHrace + " saved successfully!");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error saving user: " + e.getMessage());
+        }
     }
 
 }
