@@ -11,7 +11,7 @@ import java.util.Set;
 public class Session {
     private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-    public static String generateCode() {
+    public static String GenerateCode() {
         SecureRandom random = new SecureRandom();
         StringBuilder code = new StringBuilder(6);
 
