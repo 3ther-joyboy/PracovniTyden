@@ -16,11 +16,11 @@ public class Punishments {
     @Column(name = "name")
     public String Name;
 
-    @ManyToMany()
-    @JoinTable(
-            name = "p_sets",
-            joinColumns = @JoinColumn(name = "punishment"),
-            inverseJoinColumns = @JoinColumn(name = "set")
-    )
-    public Set<PunishmentsSets> Sets;
+//    @ManyToMany()
+//    @JoinTable(
+//            name = "p_sets",
+//            joinColumns = @JoinColumn(name = "punishment"),
+//            inverseJoinColumns = @JoinColumn(name = "set")
+//    )
+//    public Set<PunishmentsSets> Sets;
 }
