@@ -1,11 +1,9 @@
 package pup.quiz.server.model;
 import java.security.SecureRandom;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.util.Collections;
 import java.util.Set;
 
 @Entity
@@ -16,9 +14,11 @@ public class Session {
     @Column(name = "id")
     public Long Id;
 
+
     @Column(name = "code")
     public String Code;
 
-    @OneToMany(mappedBy="game")
+
+    @OneToMany(mappedBy = "session")
     public Set<User> Sets;
 }
