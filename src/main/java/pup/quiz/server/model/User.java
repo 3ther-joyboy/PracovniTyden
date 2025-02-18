@@ -12,11 +12,6 @@ public class User {
     @Column(name = "id")
     public Long Id;
 
-    public String Name;
-
-    public String Icon;
-
-    public int Score;
 
     @JsonIgnore
     @ManyToOne
