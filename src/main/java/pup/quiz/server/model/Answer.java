@@ -1,5 +1,6 @@
 package pup.quiz.server.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,6 +17,7 @@ public class Answer {
     @Column(name = "id")
     public Long Id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "question", nullable = false)
     public Question question;
