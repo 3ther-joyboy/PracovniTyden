@@ -13,6 +13,7 @@ import pup.quiz.server.repo.PunishmentRepo;
 import pup.quiz.server.repo.SessionRepo;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -48,12 +49,14 @@ public class index {
     public ResponseEntity<String> jmnjno(@PathVariable(name = "name") String jmenoHrace) {
         System.out.printf(jmenoHrace);
 
-
+        if(Objects.equals(databazeTable.findById(4L).get().Name, jmenoHrace)) {
+            return ResponseEntity.ok("Stejny kod " + jmenoHrace);
+        }
 
         Punishments save = new Punishments();
         save.Name = jmenoHrace;
         try {
-            databazeTable.save(null);
+            databazeTable.save(save);
             return ResponseEntity.ok("User " + jmenoHrace + " saved successfully!");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Error saving user: " + e.getMessage());
