@@ -1,10 +1,15 @@
 package pup.quiz.server.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "answer")
 public class Answer {
+    public Answer(String answer, boolean isCorrect) {
+        Answer = answer;
+        Correct = isCorrect;
+    }
     public Answer(String answer, boolean isCorrect, long id) {
         Answer = answer;
         Correct = isCorrect;
@@ -16,6 +21,7 @@ public class Answer {
     @Column(name = "id")
     public Long Id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "question", nullable = false)
     public Question question;
