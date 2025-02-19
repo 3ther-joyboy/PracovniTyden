@@ -12,6 +12,7 @@ import pup.quiz.server.repo.PunishmentRepo;
 import pup.quiz.server.repo.QuestionRepo;
 import pup.quiz.server.repo.SessionRepo;
 import pup.quiz.server.repo.UserRepo;
+import pup.quiz.server.workers.QuestionWorker;
 import pup.quiz.server.workers.UsersWorker;
 
 import java.io.IOException;
@@ -114,18 +115,19 @@ public class index {
 
     }
 
-    @PostMapping(value = "/post_question/{question}/{answer}/{answer_2}/{answer_3}/{answer_4}/{set}")
+    @PostMapping(value = "/post_question/{question}_{answer}_{answer_2}_{answer_3}_{answer_4}")
     public void PostQuestion(@PathVariable(name = "question") String question,
-                             @PathVariable(name = "answer_1") String answer1,
+                             @PathVariable(name = "answer") String answer1,
                              @PathVariable(name = "answer_2") String answer2,
                              @PathVariable(name = "answer_3") String answer3,
                              @PathVariable(name = "answer_4") String answer4) {
-        System.out.printf("Question: " + question);
-        System.out.printf("Answer: " + answer1);
-        System.out.printf("Answer: " + answer2);
-        System.out.printf("Answer: " + answer3);
-        System.out.printf("Answer: " + answer4);
+        System.out.printf("Question: " + question + "\n");
+        System.out.printf("Answer 1: " + answer1 + "\n");
+        System.out.printf("Answer 2: " + answer2 + "\n");
+        System.out.printf("Answer 3: " + answer3 + "\n");
+        System.out.printf("Answer 4: " + answer4 + "\n");
     }
+
 
     @PostMapping(value = "/{name}")
     public ResponseEntity<String> jmnjno(@PathVariable(name = "name") String jmenoHrace) {
