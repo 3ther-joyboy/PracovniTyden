@@ -1,17 +1,25 @@
 package pup.quiz.server.restcontroller;
 
 import org.springframework.web.bind.annotation.*;
-import pup.quiz.server.Generator;
 import pup.quiz.server.model.Session;
 import pup.quiz.server.workers.SessionWorker;
+import java.util.Arrays;
 
 @RestController
 @RequestMapping("/host")
 public class GameManager {
 
     @PostMapping(value = "/create_game")
-    public String Create() {
-        String code = Generator.GenerateCode();
+    public String Create(@RequestParam String questionIds, @RequestParam String punishmentIds) {
+        Long[] questionIdsArray = Arrays.stream(questionIds.split(","))
+                .map(Long::parseLong)
+                .toArray(Long[]::new);
+
+        Long[] punishmentIdsArray = Arrays.stream(punishmentIds.split(","))
+                .map(Long::parseLong)
+                .toArray(Long[]::new);
+
+        String code = SessionWorker.Generate(questionIdsArray, punishmentIdsArray);
 
         return code;
     }
