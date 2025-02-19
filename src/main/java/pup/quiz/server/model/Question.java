@@ -15,7 +15,6 @@ public class Question {
 
     @Column(name = "question")
     public String Question;
-
     @JsonIgnore
     @ManyToMany()
     @JoinTable(
