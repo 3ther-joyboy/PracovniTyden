@@ -19,8 +19,7 @@ import java.io.IOException;
 import java.util.*;
 
 @RestController
-@RequestMapping("/servertest")
-@CrossOrigin(origins = "*")
+@RequestMapping("/test")
 public class index {
 
     private static final Logger log = LoggerFactory.getLogger(index.class);
@@ -148,6 +147,8 @@ public class index {
         System.out.printf("Name: " + userName);
         System.out.printf("Img: " + imgUrl);
     }
+
+
 
 
     @PostMapping(value = "/{name}")
