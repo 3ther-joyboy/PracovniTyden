@@ -35,11 +35,26 @@ public class index {
     public Question question() {
         Question question = new Question();
 
+        question.Id = 1L;
         question.Question = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/dQw4w9WgXcQ?si=igJ2zsVCZSAC6hCq\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>";
-        question.Answers.add(new Answer("Ano", true, 1));
-        question.Answers.add(new Answer("Rick Rolled OMG", false, 2));
-        question.Answers.add(new Answer("Haha so funny", false, 3));
-        question.Answers.add(new Answer("Not funny... >:(", false, 4));
+
+        question.Answers = new HashSet<>();
+
+        Answer answer1 = new Answer("Ano", true, 1);
+        answer1.question = question;
+        question.Answers.add(answer1);
+
+        Answer answer2 = new Answer("Rick Rolled OMG", false, 2);
+        answer2.question = question;
+        question.Answers.add(answer2);
+
+        Answer answer3 = new Answer("Haha so funny", false, 3);
+        answer3.question = question;
+        question.Answers.add(answer3);
+
+        Answer answer4 = new Answer("Not funny... >:(", false, 4);
+        answer4.question = question;
+        question.Answers.add(answer4);
 
         return question;
     }
@@ -126,6 +141,12 @@ public class index {
         System.out.printf("Answer 2: " + answer2 + "\n");
         System.out.printf("Answer 3: " + answer3 + "\n");
         System.out.printf("Answer 4: " + answer4 + "\n");
+    }
+
+    @PostMapping(value = "/join_user/{name}_{avatar}")
+    public void JoinUser(@PathVariable(name = "name") String userName, @PathVariable(name = "avatar") String imgUrl) {
+        System.out.printf("Name: " + userName);
+        System.out.printf("Img: " + imgUrl);
     }
 
 
