@@ -5,7 +5,12 @@
 - [ ] Start
 - [ ] GameExist
 - [ ] User Answers Question 
-- [ ] Get Punished Player 
+## Get
+- [ ] Ansfers for question
+- [ ] Question
+- [ ] Users in Lobby
+- [ ] Users in Lobby
+- [ ] Get Punished Player for session
 # Lukáš
 - [x] Create Session
 - [x] Create Question

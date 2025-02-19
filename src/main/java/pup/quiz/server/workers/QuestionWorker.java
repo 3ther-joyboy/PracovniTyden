@@ -15,6 +15,14 @@ public class QuestionWorker {
     @Autowired
     static AnswerRepo a_rep;
 
+    public static Boolean DeleteQuestion(Long question) {
+        try{
+            q_rep.deleteById(question);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
     public static Long CreateQuestion(String question, String[] ans , boolean[] corr) {
         Question que = new Question();
         que.Question = question;
