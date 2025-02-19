@@ -9,6 +9,6 @@ import pup.quiz.server.model.Session;
 import java.util.Set;
 
 public interface SessionRepo extends CrudRepository<Session, Long> {
-    @Query(value = "SELECT * FROM sessions WHERE code = :Code")
+    @Query(value = "SELECT * FROM sessions WHERE code = :Code", nativeQuery = true)
     Session findByCode(@Param("Code")String code);
 }
