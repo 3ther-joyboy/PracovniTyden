@@ -114,9 +114,17 @@ public class index {
 
     }
 
-    @PostMapping(value = "/post_question")
-    public void PostQuestion() {
-
+    @PostMapping(value = "/post_question/{question}/{answer}/{answer_2}/{answer_3}/{answer_4}/{set}")
+    public void PostQuestion(@PathVariable(name = "question") String question,
+                             @PathVariable(name = "answer_1") String answer1,
+                             @PathVariable(name = "answer_2") String answer2,
+                             @PathVariable(name = "answer_3") String answer3,
+                             @PathVariable(name = "answer_4") String answer4) {
+        System.out.printf("Question: " + question);
+        System.out.printf("Answer: " + answer1);
+        System.out.printf("Answer: " + answer2);
+        System.out.printf("Answer: " + answer3);
+        System.out.printf("Answer: " + answer4);
     }
 
     @PostMapping(value = "/{name}")
