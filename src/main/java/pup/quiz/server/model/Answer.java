@@ -6,6 +6,10 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "answer")
 public class Answer {
+    public Answer(String answer, boolean isCorrect) {
+        Answer = answer;
+        Correct = isCorrect;
+    }
     public Answer(String answer, boolean isCorrect, long id) {
         Answer = answer;
         Correct = isCorrect;
