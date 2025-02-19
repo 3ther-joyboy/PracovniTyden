@@ -13,6 +13,8 @@ public class Question {
     @Column(name = "id")
     public Long Id;
 
+    @Column(name = "question")
+    public String Question;
     @JsonIgnore
     @ManyToMany()
     @JoinTable(
