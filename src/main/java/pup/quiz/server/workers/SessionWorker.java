@@ -42,10 +42,8 @@ public class SessionWorker {
     public static Set<User> GetUsersInSession(String SessionCode) {
         return rep.findByCode(SessionCode).Users;
     }
-    public static Iterable<User> GetPunishedUsers(String SessionCode,UUID code, int countOfPunished) {
-
-        // TODO
-        return null;
+    public static Iterable<User> GetPunishedUsers(UUID code, int countOfPunished) {
+        return u_rep.punishedUsers(code,countOfPunished);
     }
     public static Question GetCurrentQuestion(String SessionCode) {
         return rep.findByCode(SessionCode).CurrentQuestion;

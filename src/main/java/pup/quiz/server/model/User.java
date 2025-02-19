@@ -28,6 +28,7 @@ public class User {
     @Column(name = "score")
     public int Score = 0;
 
+    @JsonIgnore
     @ManyToMany()
     @JoinTable(
             name = "answer_user",
