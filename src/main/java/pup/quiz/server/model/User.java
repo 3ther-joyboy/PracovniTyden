@@ -13,6 +13,16 @@ public class User {
     public Long Id;
 
 
+    @Column(name = "pfp")
+    public String ProfilePicture;
+
+    @Column(name = "name")
+    public String Name;
+
+
+    @Column(name = "score")
+    public int Score = 0;
+
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "session", nullable = false)
