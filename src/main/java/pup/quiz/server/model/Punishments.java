@@ -25,4 +25,13 @@ public class Punishments {
             inverseJoinColumns = @JoinColumn(name = "id_set")
     )
     public Set<PunishmentsSets> Sets;
+
+    @JsonIgnore
+    @ManyToMany()
+    @JoinTable(
+            name = "session_punisment",
+            joinColumns = @JoinColumn(name = "id_punishment"),
+            inverseJoinColumns = @JoinColumn(name = "id_session")
+    )
+    public Set<Session> Sessions;
 }

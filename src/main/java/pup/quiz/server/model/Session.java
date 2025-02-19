@@ -19,6 +19,12 @@ public class Session {
     public String Code;
 
 
+    @ManyToMany(mappedBy = "Sessions")
+    public Set<Punishments> Punisment;
+
+    @ManyToMany(mappedBy = "Sessions")
+    public Set<Question> Questions;
+
     @OneToMany(mappedBy = "session")
-    public Set<User> Sets;
+    public Set<User> Users;
 }

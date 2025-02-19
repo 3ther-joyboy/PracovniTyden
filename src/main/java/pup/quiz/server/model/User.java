@@ -3,14 +3,16 @@ package pup.quiz.server.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "sessions")
 public class User {
 
     @jakarta.persistence.Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
-    public Long Id;
+    public UUID Id;
 
 
     @Column(name = "pfp")

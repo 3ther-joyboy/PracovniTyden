@@ -24,6 +24,15 @@ public class Question {
     )
     public Set<QuestionSets> Sets;
 
+    @JsonIgnore
+    @ManyToMany()
+    @JoinTable(
+            name = "session_question",
+            joinColumns = @JoinColumn(name = "id_question"),
+            inverseJoinColumns = @JoinColumn(name = "id_session")
+    )
+    public Set<Session> Sessions;
+
     @OneToMany(mappedBy = "question")
     public Set<Answer> Answers;
 }
