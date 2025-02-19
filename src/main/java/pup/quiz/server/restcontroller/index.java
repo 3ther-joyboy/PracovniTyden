@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pup.quiz.server.Generator;
-import pup.quiz.server.model.Punishments;
-import pup.quiz.server.model.Question;
-import pup.quiz.server.model.Session;
-import pup.quiz.server.model.User;
+import pup.quiz.server.model.*;
 import pup.quiz.server.repo.PunishmentRepo;
 import pup.quiz.server.repo.QuestionRepo;
 import pup.quiz.server.repo.SessionRepo;
@@ -18,8 +15,7 @@ import pup.quiz.server.repo.UserRepo;
 import pup.quiz.server.workers.UsersWorker;
 
 import java.io.IOException;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/servertest")
@@ -34,34 +30,93 @@ public class index {
     @Autowired
     private QuestionRepo questionRepo;
 
-    @GetMapping(value = "/")
-    public String HelloWorld() {
-        return "ahoj pusinko";
+    @GetMapping(value = "/question")
+    public Question question() {
+        Question question = new Question();
+
+        question.Question = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/dQw4w9WgXcQ?si=igJ2zsVCZSAC6hCq\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>";
+        question.Answers.add(new Answer("Ano", true, 1));
+        question.Answers.add(new Answer("Rick Rolled OMG", false, 2));
+        question.Answers.add(new Answer("Haha so funny", false, 3));
+        question.Answers.add(new Answer("Not funny... >:(", false, 4));
+
+        return question;
     }
 
-    @GetMapping(value = "/pocetlidi")
-    public String ass(){
+    @GetMapping(value = "/punishments")
+    public Punishments punishments() {
+        Punishments punishments = new Punishments();
+
+        punishments.Name = "Test punishment";
+        punishments.Id = 1L;
+
+        return punishments;
+    }
+
+    @GetMapping(value = "/session")
+    public Session session() {
         Session session = new Session();
-        String code = Generator.GenerateCode();
-        session.Code = code;
-        try {
-            sesR.save(session);
-        } catch (Exception error) {
-            System.out.println(error.toString());
-        }
-        return code;
+
+        session.Id = 1L;
+        session.Code = Generator.GenerateCode();
+        session.Punisment.add(punishments());
+        session.Questions.add(question());
+
+        return session;
     }
 
-    @GetMapping(value = "/work")
-    public User Work() {
-        User asdf = new User();
-        asdf.Name = "asdf";
-        asdf.Score = 54;
-        return asdf;
+    @GetMapping(value = "/user")
+    public User user() {
+        User user = new User();
+
+        user.Score = 15000;
+        user.Name = "Franta";
+        user.ProfilePicture = "https://placehold.co/500";
+        user.Id = UUID.randomUUID();
+
+        return user;
+    }
+
+    @GetMapping(value = "/punishmentSet")
+    public PunishmentsSets punishmentSet() {
+        PunishmentsSets punishmentsSet = new PunishmentsSets();
+
+        punishmentsSet.Punish.add(new Punishments());
+        punishmentsSet.Id = 1L;
+
+        return punishmentsSet;
+    }
+
+    @GetMapping(value = "/questionSet")
+    public QuestionSets questionSet() {
+        QuestionSets questionSet = new QuestionSets();
+
+        questionSet.Id = 1L;
+        questionSet.Question.add(new Question());
+
+        return questionSet;
+    }
+
+    @GetMapping(value = "/get_users")
+    public Set<User> getUsers() {
+        Set<User> userList = new HashSet<>();
+
+        userList.add(user());
+        userList.add(user());
+        userList.add(user());
+        userList.add(user());
+
+        return userList;
     }
 
     @GetMapping(value = "/get_question")
     public void GetQuestion() {
+
+    }
+
+    @PostMapping(value = "/post_question")
+    public void PostQuestion() {
+
     }
 
     @PostMapping(value = "/{name}")

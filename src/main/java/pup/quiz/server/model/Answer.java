@@ -5,6 +5,11 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "answer")
 public class Answer {
+    public Answer(String answer, boolean isCorrect, long id) {
+        Answer = answer;
+        Correct = isCorrect;
+        Id = id;
+    }
 
     @jakarta.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +20,9 @@ public class Answer {
     @JoinColumn(name = "question", nullable = false)
     public Question question;
 
+    @Column(name = "answer")
+    public String Answer;
+
     @Column(name = "correct")
-    public Boolean Correct;
+    public Boolean Correct = false;
 }
