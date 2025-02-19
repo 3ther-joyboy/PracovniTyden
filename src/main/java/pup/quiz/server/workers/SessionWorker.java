@@ -29,6 +29,9 @@ public class SessionWorker {
         }
         return null;
     }
+    public static boolean SessionExists(String code) {
+            return rep.findByCode(code) != null;
+    }
     public static String Generate(Long[] questions, Long[] punisments) {
         Session ses = new Session();
         ses.Code = Generator.GenerateCode();

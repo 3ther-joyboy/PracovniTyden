@@ -6,9 +6,10 @@
 - [ ] GameExist
 - [ ] User Answers Question 
 ## Get
-- [ ] Ansfers for question
+- [ ] Get Next Question
+- [ ] Answer question by id
 - [ ] Question
-- [ ] Users in Lobby
+- [ ] Question in Session
 - [ ] Users in Lobby
 - [ ] Get Punished Player for session
 # Lukáš
@@ -16,6 +17,13 @@
 - [x] Create Question
 - [x] LogPlayer
 - [ ] Start
-- [ ] GameExist
+- [x] GameExist
 - [ ] User Answers Question
 - [ ] Get Punished Player 
+## Get
+- [ ] Get Next Question
+- [x] Question
+- [x] Question in Session
+- [ ] Answer question by id
+- [ ] Users in Lobby
+- [ ] Get Punished Player for session
