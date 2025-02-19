@@ -1,8 +1,9 @@
 package pup.quiz.server.repo;
 
 import org.springframework.data.repository.CrudRepository;
-import pup.quiz.server.model.Session;
 import pup.quiz.server.model.User;
 
-public interface UserRepo  extends CrudRepository<User, Long> {
+import java.util.UUID;
+
+public interface UserRepo  extends CrudRepository<User, UUID> {
 }

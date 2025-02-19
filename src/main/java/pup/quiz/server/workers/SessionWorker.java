@@ -29,10 +29,25 @@ public class SessionWorker {
         }
         return null;
     }
+    public static void NextInQuee() {
+
+    }
+    public static Question GetCurrentQuestion(String SessionCode) {
+        return rep.findByCode(SessionCode).CurrentQuestion;
+    }
+
+    public static void UserAnswer(String SessionCode,UUID userCode,Long AnswerId) {
+        Long correct = q_rep.getCorrectAnswer(GetCurrentQuestion(SessionCode).Id,AnswerId);
+        if(correct != null && correct == 1L) {
+            User usr = u_rep.findById(userCode).get();
+            usr.Score++;
+            u_rep.save(usr);
+        }
+    }
     public static boolean SessionExists(String code) {
             return rep.findByCode(code) != null;
     }
-    public static String Generate(Long[] questions, Long[] punisments) {
+    public static Session Generate(Long[] questions, Long[] punisments) {
         Session ses = new Session();
         ses.Code = Generator.GenerateCode();
 
@@ -46,6 +61,6 @@ public class SessionWorker {
             }
 
         rep.save(ses);
-        return ses.Code;
+        return ses;
     }
 }

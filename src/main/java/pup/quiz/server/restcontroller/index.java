@@ -72,7 +72,7 @@ public class index {
     public Session session() {
         Session session = new Session();
 
-        session.Id = 1L;
+        session.Id = UUID.randomUUID();
         session.Code = Generator.GenerateCode();
         session.Punisment.add(punishments());
         session.Questions.add(question());
@@ -155,9 +155,9 @@ public class index {
     public ResponseEntity<String> jmnjno(@PathVariable(name = "name") String jmenoHrace) {
         System.out.printf(jmenoHrace);
 
-        if(Objects.equals(databazeTable.findById(4L).get().Name, jmenoHrace)) {
-            return ResponseEntity.ok("Stejny kod " + jmenoHrace);
-        }
+        //if(Objects.equals(databazeTable.findById(4L).get().Name, jmenoHrace)) {
+            //return ResponseEntity.ok("Stejny kod " + jmenoHrace);
+        //}
 
         User save = new User();
         save.Name = jmenoHrace;
