@@ -8,9 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pup.quiz.server.Generator;
 import pup.quiz.server.model.Punishments;
+import pup.quiz.server.model.Question;
 import pup.quiz.server.model.Session;
 import pup.quiz.server.model.User;
 import pup.quiz.server.repo.PunishmentRepo;
+import pup.quiz.server.repo.QuestionRepo;
 import pup.quiz.server.repo.SessionRepo;
 import pup.quiz.server.repo.UserRepo;
 import pup.quiz.server.workers.UsersWorker;
@@ -29,6 +31,8 @@ public class index {
     private UserRepo databazeTable;
     @Autowired
     private SessionRepo sesR;
+    @Autowired
+    private QuestionRepo questionRepo;
 
     @GetMapping(value = "/")
     public String HelloWorld() {
@@ -49,8 +53,15 @@ public class index {
     }
 
     @GetMapping(value = "/work")
-    void Work() {
-        UsersWorker.Test(5);
+    public User Work() {
+        User asdf = new User();
+        asdf.Name = "asdf";
+        asdf.Score = 54;
+        return asdf;
+    }
+
+    @GetMapping(value = "/get_question")
+    public void GetQuestion() {
     }
 
     @PostMapping(value = "/{name}")
