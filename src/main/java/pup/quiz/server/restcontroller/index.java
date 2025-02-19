@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.*;
 import pup.quiz.server.Generator;
 import pup.quiz.server.model.Punishments;
 import pup.quiz.server.model.Session;
+import pup.quiz.server.model.User;
 import pup.quiz.server.repo.PunishmentRepo;
 import pup.quiz.server.repo.SessionRepo;
+import pup.quiz.server.repo.UserRepo;
+import pup.quiz.server.workers.UsersWorker;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -23,7 +26,7 @@ public class index {
 
     private static final Logger log = LoggerFactory.getLogger(index.class);
     @Autowired
-    private PunishmentRepo databazeTable;
+    private UserRepo databazeTable;
     @Autowired
     private SessionRepo sesR;
 
@@ -45,6 +48,11 @@ public class index {
         return code;
     }
 
+    @GetMapping(value = "/work")
+    void Work() {
+        UsersWorker.Test(5);
+    }
+
     @PostMapping(value = "/{name}")
     public ResponseEntity<String> jmnjno(@PathVariable(name = "name") String jmenoHrace) {
         System.out.printf(jmenoHrace);
@@ -53,7 +61,7 @@ public class index {
             return ResponseEntity.ok("Stejny kod " + jmenoHrace);
         }
 
-        Punishments save = new Punishments();
+        User save = new User();
         save.Name = jmenoHrace;
         try {
             databazeTable.save(save);
