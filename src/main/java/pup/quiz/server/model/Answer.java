@@ -3,6 +3,8 @@ package pup.quiz.server.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "answer")
 public class Answer {
@@ -31,4 +33,9 @@ public class Answer {
 
     @Column(name = "correct")
     public Boolean Correct = false;
+
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "Answered")
+    public Set<User> AnsweredBy;
 }

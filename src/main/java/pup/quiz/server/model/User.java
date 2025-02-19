@@ -3,6 +3,9 @@ package pup.quiz.server.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.security.Timestamp;
+import java.time.Instant;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -25,10 +28,19 @@ public class User {
     @Column(name = "score")
     public int Score = 0;
 
+    @ManyToMany()
+    @JoinTable(
+            name = "answer_user",
+            joinColumns = @JoinColumn(name = "id_user"),
+            inverseJoinColumns = @JoinColumn(name = "id_answer")
+    )
+    public Set<Answer> Answered;
+
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "session", nullable = false)
     public Session session;
 
-
+    @Column(name = "punish")
+    public Instant punishTimestamp = Instant.MIN;
 }

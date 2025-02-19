@@ -14,4 +14,7 @@ public interface QuestionSetRepo  extends CrudRepository<QuestionSets, Long> {
             "FROM answer WHERE id = :Answer and correct = true and question = :Question)"
             , nativeQuery = true)
     Long getCorrectAnswer(@Param("Question")Long question,@Param("Answer")Long answer);
+
+    @Query(value = "SELECT * FROM question INNER JOIN session_question ON session_question.id_question=quesiton.id WHERE question.id = :Question and id_session = :Session", nativeQuery = true)
+    Session randomInSession(@Param("Session")Long session,@Param("Question")Long question);
 }

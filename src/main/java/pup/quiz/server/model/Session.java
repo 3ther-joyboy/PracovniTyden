@@ -15,7 +15,6 @@ public class Session {
     @Column(name = "id")
     public UUID Id;
 
-
     @Column(name = "code")
     public String Code;
 
