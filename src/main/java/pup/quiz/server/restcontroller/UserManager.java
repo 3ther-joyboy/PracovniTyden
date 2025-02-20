@@ -25,7 +25,13 @@ public class UserManager {
                              @PathVariable(name = "index") int index,
                              @PathVariable(name = "userID") UUID id) {
 
+    }
 
-
+    public Long Nevim() {
+        if(1 == 1) {
+            return 1L;
+        } else {
+            return 0L;
+        }
     }
 }

@@ -18,17 +18,10 @@ import java.util.UUID;
 @RequestMapping("/host")
 public class GameManager {
 
-    @PostMapping(value = "/create_game")
-    public String CreateSession(@RequestParam String questionIds, @RequestParam String punishmentIds) {
-        Long[] questionIdsArray = Arrays.stream(questionIds.split(","))
-                .map(Long::parseLong)
-                .toArray(Long[]::new);
+    @GetMapping(value = "/create_game")
+    public String CreateSession() {
 
-        Long[] punishmentIdsArray = Arrays.stream(punishmentIds.split(","))
-                .map(Long::parseLong)
-                .toArray(Long[]::new);
-
-        String code = Generate(questionIdsArray, punishmentIdsArray).Code;
+        String code = Generate(new Long[]{}, new Long[]{}).Code;
 
         return code;
     }
