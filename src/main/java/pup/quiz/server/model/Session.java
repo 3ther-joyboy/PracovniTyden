@@ -17,7 +17,8 @@ public class Session {
     public String Code;
 
     // TODO (one to many connection)
-    @Column(name = "current_question")
+    @ManyToOne
+    @JoinColumn(name="current_question", nullable=false)
     public Question CurrentQuestion;
 
     @ManyToMany(mappedBy = "Sessions")
