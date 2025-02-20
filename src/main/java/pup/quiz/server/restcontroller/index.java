@@ -124,6 +124,8 @@ public class index {
         return userList;
     }
 
+
+
     @GetMapping(value = "/get_question")
     public void GetQuestion() {
 
@@ -147,10 +149,7 @@ public class index {
         System.out.printf("Name: " + userName);
         System.out.printf("Img: " + imgUrl);
     }
-
-
-
-
+    
     @PostMapping(value = "/{name}")
     public ResponseEntity<String> jmnjno(@PathVariable(name = "name") String jmenoHrace) {
         System.out.printf(jmenoHrace);
