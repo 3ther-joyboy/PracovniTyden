@@ -58,7 +58,7 @@ public class Admin {
     private PunismentSetRepo p_rep;
 
 
-    public Long CreateSetPunish(String name) {
+    public Long CreateSetPunishemt(String name) {
         PunishmentsSets set = new PunishmentsSets();
         set.Name = name;
         return p_rep.save(set).Id;
@@ -96,11 +96,8 @@ public class Admin {
             a_rep.save(as);
             que.Answers.add(as);
         }
-        Long id = q_rep.save(que).Id;
+        que.Set = qs_rep.findById(set).get();
 
-        QuestionSets asdf = qs_rep.findById(set).get();
-        asdf.Questions.add(que);
-        qs_rep.save(asdf);
-        return id;
+        return q_rep.save(que).Id;
     }
 }
