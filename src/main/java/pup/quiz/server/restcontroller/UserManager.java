@@ -2,10 +2,6 @@ package pup.quiz.server.restcontroller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pup.quiz.server.workers.SessionWorker;
-import pup.quiz.server.workers.UsersWorker;
-
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/sessions")

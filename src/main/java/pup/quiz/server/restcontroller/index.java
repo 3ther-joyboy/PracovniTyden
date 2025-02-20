@@ -1,6 +1,5 @@
 package pup.quiz.server.restcontroller;
 
-import org.apache.coyote.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,14 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pup.quiz.server.Generator;
 import pup.quiz.server.model.*;
-import pup.quiz.server.repo.PunishmentRepo;
 import pup.quiz.server.repo.QuestionRepo;
 import pup.quiz.server.repo.SessionRepo;
 import pup.quiz.server.repo.UserRepo;
-import pup.quiz.server.workers.QuestionWorker;
-import pup.quiz.server.workers.UsersWorker;
 
-import java.io.IOException;
 import java.util.*;
 
 @RestController
