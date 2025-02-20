@@ -19,7 +19,7 @@ public class GameManager {
                 .map(Long::parseLong)
                 .toArray(Long[]::new);
 
-        String code = SessionWorker.Generate(questionIdsArray, punishmentIdsArray).toString();
+        String code = SessionWorker.Generate(questionIdsArray, punishmentIdsArray).Code;
 
         return code;
     }

@@ -18,7 +18,7 @@ public class SessionWorker {
     @Autowired
     static UserRepo u_rep;
 
-    public UUID AddUser(String code,String pfp, String name) {
+    public static UUID AddUser(String code,String pfp, String name) {
         Session joiningSession = rep.findByCode(code);
         if(joiningSession != null) {
             User usr = new User();
@@ -49,15 +49,15 @@ public class SessionWorker {
         return rep.findByCode(SessionCode).CurrentQuestion;
     }
 
-    public static void UserAnswer(String SessionCode,UUID userCode,Long AnswerId) {
+    public static void UserAnswer(String SessionCode,UUID userID,Long AnswerId) {
         Long correct = q_rep.getCorrectAnswer(GetCurrentQuestion(SessionCode).Id,AnswerId);
         if(correct != null && correct == 1L) {
-            User usr = u_rep.findById(userCode).get();
+            User usr = u_rep.findById(userID).get();
             usr.Score++;
             usr.punishTimestamp = Instant.MIN;
             u_rep.save(usr);
         }else{
-            User usr = u_rep.findById(userCode).get();
+            User usr = u_rep.findById(userID).get();
             usr.punishTimestamp = Instant.now();
             u_rep.save(usr);
 

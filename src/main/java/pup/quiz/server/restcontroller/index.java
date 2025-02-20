@@ -124,8 +124,6 @@ public class index {
         return userList;
     }
 
-
-
     @GetMapping(value = "/get_question")
     public void GetQuestion() {
 
