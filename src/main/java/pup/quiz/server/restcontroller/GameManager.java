@@ -90,6 +90,9 @@ public class GameManager {
         }
         return null;
     }
+    public Iterable<Punishments> RandomPunishment(String code, int coutOfUsers) {
+
+    }
     public Session Generate(Long[] questions, Long[] punisments) {
         Session ses = new Session();
         ses.Code = Generator.GenerateCode();
@@ -103,6 +106,7 @@ public class GameManager {
             for (Punishments pun : p_rep.findById(i).get().Punish) {
                 ses.Punisment.add(pun);
             }
+
 
         rep.save(ses);
         return ses;
