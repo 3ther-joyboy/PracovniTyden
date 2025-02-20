@@ -14,6 +14,6 @@ public class QuestionSets {
     public Long Id;
 
 
-    @ManyToMany(mappedBy = "Sets")
-    public Set<Question> Question;
+    @OneToMany(mappedBy = "Set")
+    public Set<Question> Questions;
 }

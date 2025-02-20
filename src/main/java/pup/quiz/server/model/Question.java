@@ -13,26 +13,20 @@ public class Question {
     @Column(name = "id")
     public Long Id;
 
-    @Column(name = "question")
+    @Column(name = "question_text")
     public String Question;
 
-    @JsonIgnore
-    @ManyToMany()
-    @JoinTable(
-            name = "q_sets",
-            joinColumns = @JoinColumn(name = "id_question"),
-            inverseJoinColumns = @JoinColumn(name = "id_set")
-    )
-    public Set<QuestionSets> Sets;
-
-    @JsonIgnore
-    @ManyToMany()
+    @ManyToMany
     @JoinTable(
             name = "session_question",
-            joinColumns = @JoinColumn(name = "id_question"),
-            inverseJoinColumns = @JoinColumn(name = "id_session")
-    )
+            joinColumns = @JoinColumn(name = "question_id"),
+            inverseJoinColumns = @JoinColumn(name = "session_id"))
     public Set<Session> Sessions;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name="set_id", nullable=false)
+    public QuestionSets Set;
 
     @OneToMany(mappedBy = "question")
     public Set<Answer> Answers;

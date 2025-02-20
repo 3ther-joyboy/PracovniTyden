@@ -71,7 +71,7 @@ public class SessionWorker {
         ses.Code = Generator.GenerateCode();
 
         for (Long i : questions)
-            for (Question que : q_rep.findById(i).get().Question) {
+            for (Question que : q_rep.findById(i).get().Questions) {
                 ses.Questions.add(que);
             }
         for (Long i : punisments)

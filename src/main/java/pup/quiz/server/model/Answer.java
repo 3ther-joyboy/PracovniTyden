@@ -25,7 +25,7 @@ public class Answer {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "question", nullable = false)
+    @JoinColumn(name="queston_id", nullable=false)
     public Question question;
 
     @Column(name = "answer")

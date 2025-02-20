@@ -107,7 +107,7 @@ public class index {
         QuestionSets questionSet = new QuestionSets();
 
         questionSet.Id = 1L;
-        questionSet.Question.add(new Question());
+        questionSet.Questions.add(new Question());
 
         return questionSet;
     }
