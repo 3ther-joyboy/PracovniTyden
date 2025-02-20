@@ -75,8 +75,11 @@ public class GameManager {
     }
     // "Start"
     public void NextInQuestion(String SessionCode) {
-        // TODO
-        // vybere novou otázku a tu novou otázku odebere z listu možných otázek ze kterých vybýrá
+        Session s = rep.findByCode(SessionCode);
+        Question q = q_rep.randomInSession(s.Id);
+        s.CurrentQuestion = q;
+        s.Questions.remove(s);
+        rep.save(s);
         for (User i : GetUsersInSession(SessionCode)) {
             i.punishTimestamp = Instant.MAX;
             u_rep.save(i);
