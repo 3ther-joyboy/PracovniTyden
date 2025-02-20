@@ -28,6 +28,10 @@ public class Question {
     @JoinColumn(name="set_id", nullable=false)
     public QuestionSets Set;
 
+    @JsonIgnore
+    @OneToMany(mappedBy="CurrentQuestion")
+    public Set<Session> CurrentSession;
+
     @OneToMany(mappedBy = "question")
     public Set<Answer> Answers;
 }
