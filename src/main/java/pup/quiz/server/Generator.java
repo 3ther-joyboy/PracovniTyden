@@ -4,7 +4,7 @@ import java.security.SecureRandom;
 
 public class Generator {
     private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
+    // it can generate 2 same codes and we are fucked
     public static String GenerateCode() {
         SecureRandom random = new SecureRandom();
         StringBuilder code = new StringBuilder(6);
