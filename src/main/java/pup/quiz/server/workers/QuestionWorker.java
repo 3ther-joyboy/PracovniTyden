@@ -3,9 +3,13 @@ package pup.quiz.server.workers;
 import org.springframework.beans.factory.annotation.Autowired;
 import pup.quiz.server.model.Answer;
 import pup.quiz.server.model.Question;
+import pup.quiz.server.model.QuestionSets;
 import pup.quiz.server.repo.AnswerRepo;
 import pup.quiz.server.repo.QuestionRepo;
 import pup.quiz.server.repo.QuestionSetRepo;
+import pup.quiz.server.repo.SessionRepo;
+
+import java.util.Set;
 
 public class QuestionWorker {
     @Autowired
@@ -14,14 +18,23 @@ public class QuestionWorker {
     static QuestionRepo q_rep;
     @Autowired
     static AnswerRepo a_rep;
+    @Autowired
+    static SessionRepo s_rep;
 
     public static Boolean DeleteQuestion(Long question) {
         try{
             q_rep.deleteById(question);
             return true;
         } catch (Exception e) {
-            return false;
         }
+        return false;
+    }
+    // tady znova returni Iterable
+    public static Iterable GetQuestion() {
+        return s_rep.findAll();
+    }
+    public static Set<Question> GetQuestionFrom(String session) {
+        return s_rep.findByCode(session).Questions;
     }
     public static Long CreateQuestion(String question, String[] ans , boolean[] corr) {
         Question que = new Question();
