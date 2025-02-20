@@ -16,7 +16,6 @@ public class Session {
     @Column(name = "code")
     public String Code;
 
-    // TODO (one to many connection)
     @ManyToOne
     @JoinColumn(name="current_question", nullable=false)
     public Question CurrentQuestion;
