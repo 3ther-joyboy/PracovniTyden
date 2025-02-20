@@ -9,8 +9,4 @@ import java.util.Collections;
 public class UsersWorker {
     @Autowired
     static UserRepo repo;
-
-    public static void Test(long id) {
-        repo.deleteAllById(Collections.singleton(id));
-    }
 }

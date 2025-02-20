@@ -5,7 +5,8 @@ import pup.quiz.server.Generator;
 import pup.quiz.server.model.*;
 import pup.quiz.server.repo.*;
 
-import java.util.UUID;
+import java.time.Instant;
+import java.util.*;
 
 public class SessionWorker {
     @Autowired
@@ -17,7 +18,7 @@ public class SessionWorker {
     @Autowired
     static UserRepo u_rep;
 
-    public UUID AddUser(String code,String pfp, String name) {
+    public static UUID AddUser(String code,String pfp, String name) {
         Session joiningSession = rep.findByCode(code);
         if(joiningSession != null) {
             User usr = new User();
@@ -29,7 +30,43 @@ public class SessionWorker {
         }
         return null;
     }
-    public static String Generate(Long[] questions, Long[] punisments) {
+    // "Start"
+    public static void NextInQuestion(String SessionCode) {
+        // TODO
+        // vybere novou otázku a tu novou otázku odebere z listu možných otázek ze kterých vybýrá
+        for (User i : GetUsersInSession(SessionCode)) {
+            i.punishTimestamp = Instant.MAX;
+            u_rep.save(i);
+        }
+    }
+    public static Set<User> GetUsersInSession(String SessionCode) {
+        return rep.findByCode(SessionCode).Users;
+    }
+    public static Iterable<User> GetPunishedUsers(UUID code, int countOfPunished) {
+        return u_rep.punishedUsers(code,countOfPunished);
+    }
+    public static Question GetCurrentQuestion(String SessionCode) {
+        return rep.findByCode(SessionCode).CurrentQuestion;
+    }
+
+    public static void UserAnswer(String SessionCode,UUID userCode,Long AnswerId) {
+        Long correct = q_rep.getCorrectAnswer(GetCurrentQuestion(SessionCode).Id,AnswerId);
+        if(correct != null && correct == 1L) {
+            User usr = u_rep.findById(userCode).get();
+            usr.Score++;
+            usr.punishTimestamp = Instant.MIN;
+            u_rep.save(usr);
+        }else{
+            User usr = u_rep.findById(userCode).get();
+            usr.punishTimestamp = Instant.now();
+            u_rep.save(usr);
+
+        }
+    }
+    public static boolean SessionExists(String code) {
+            return rep.findByCode(code) != null;
+    }
+    public static Session Generate(Long[] questions, Long[] punisments) {
         Session ses = new Session();
         ses.Code = Generator.GenerateCode();
 
@@ -41,8 +78,7 @@ public class SessionWorker {
             for (Punishments pun : p_rep.findById(i).get().Punish) {
                 ses.Punisment.add(pun);
             }
-
         rep.save(ses);
-        return ses.Code;
+        return ses;
     }
 }
