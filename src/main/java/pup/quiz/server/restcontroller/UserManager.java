@@ -22,7 +22,7 @@ public class UserManager {
         // ADDING USER TO SESSION DATABASE
         SessionWorker.AddUser(code, userName, imgUrl);
 
-        return null;
+        return ResponseEntity.ok("Successfully added to game!");
     }
 
     @PostMapping(value = "/{sessionId}/submit_answer")
