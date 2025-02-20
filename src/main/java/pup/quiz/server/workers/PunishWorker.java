@@ -6,9 +6,9 @@ import pup.quiz.server.repo.PunismentSetRepo;
 
 public class PunishWorker {
     @Autowired
-    private static PunismentSetRepo p_rep;
+    private PunismentSetRepo p_rep;
 
-    public static Long CreateSet(String name) {
+    public Long CreateSet(String name) {
         PunishmentsSets set = new PunishmentsSets();
         set.Name = name;
         return p_rep.save(set).Id;

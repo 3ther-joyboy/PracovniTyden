@@ -8,5 +8,5 @@ import java.util.Collections;
 
 public class UsersWorker {
     @Autowired
-    static UserRepo repo;
+    UserRepo repo;
 }

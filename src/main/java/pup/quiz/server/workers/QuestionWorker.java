@@ -13,15 +13,15 @@ import java.util.Set;
 
 public class QuestionWorker {
     @Autowired
-    static QuestionSetRepo qs_rep;
+    QuestionSetRepo qs_rep;
     @Autowired
-    static QuestionRepo q_rep;
+    QuestionRepo q_rep;
     @Autowired
-    static AnswerRepo a_rep;
+    AnswerRepo a_rep;
     @Autowired
-    static SessionRepo s_rep;
+    SessionRepo s_rep;
 
-    public static Boolean DeleteQuestion(Long question) {
+    public Boolean DeleteQuestion(Long question) {
         try{
             q_rep.deleteById(question);
             return true;
@@ -30,21 +30,21 @@ public class QuestionWorker {
         return false;
     }
     // tady znova returni Iterable
-    public static Iterable<Question> GetQuestion() {
+    public Iterable<Question> GetQuestion() {
         return q_rep.findAll();
     }
-    public static Iterable<QuestionSets> GetSets() {
+    public Iterable<QuestionSets> GetSets() {
         return qs_rep.findAll();
     }
-    public static Set<Question> GetQuestionFrom(String session) {
+    public Set<Question> GetQuestionFrom(String session) {
         return s_rep.findByCode(session).Questions;
     }
-    public static Long CreateSet(String name) {
+    public Long CreateSet(String name) {
         QuestionSets set = new QuestionSets();
         set.Name = name;
         return qs_rep.save(set).Id;
     }
-    public static Long CreateQuestion(String question, String[] ans , boolean[] corr,Long set) {
+    public Long CreateQuestion(String question, String[] ans , boolean[] corr,Long set) {
         Question que = new Question();
         que.Question = question;
 
