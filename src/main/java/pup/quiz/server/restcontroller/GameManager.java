@@ -19,13 +19,11 @@ import java.util.UUID;
 public class GameManager {
 
     @GetMapping(value = "/create_game")
-    public String CreateSession() {
-
-        String code = Generate(new Long[]{}, new Long[]{}).Code;
+    public String CreateSession(@RequestBody Long[][] penis) {
+        String code = Generate(penis[0], penis[0]).Code;
 
         return code;
     }
-
 
     ///  WOKERS
     @Autowired
