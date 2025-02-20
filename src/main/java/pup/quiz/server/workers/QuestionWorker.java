@@ -30,13 +30,23 @@ public class QuestionWorker {
         return false;
     }
     // tady znova returni Iterable
-    public static Iterable GetQuestion() {
-        return s_rep.findAll();
+    public static Iterable<Question> GetQuestion() {
+        return q_rep.findAll();
+    }
+    public static Iterable<QuestionSets> GetSets() {
+        return qs_rep.findAll();
     }
     public static Set<Question> GetQuestionFrom(String session) {
         return s_rep.findByCode(session).Questions;
     }
-    public static Long CreateQuestion(String question, String[] ans , boolean[] corr) {
+    public static Long CreateSet(String name) {
+        QuestionSets set = new QuestionSets();
+        set.Name = name;
+        return qs_rep.save(set).Id;
+    }
+    public static Long CreateQuestion(String question, String[] ans , boolean[] corr,Long set) {
+        // TODO
+        // connect to a question set
         Question que = new Question();
         que.Question = question;
 

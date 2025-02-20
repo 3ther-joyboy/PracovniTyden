@@ -13,6 +13,8 @@ public class QuestionSets {
     @Column(name = "id")
     public Long Id;
 
+    @Column(name = "name")
+    public String Name = "Lorem Ipsum";
 
     @OneToMany(mappedBy = "Set")
     public Set<Question> Questions;

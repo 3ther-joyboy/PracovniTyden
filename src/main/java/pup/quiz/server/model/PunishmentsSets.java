@@ -13,6 +13,9 @@ public class PunishmentsSets {
     @Column(name = "id")
     public Long Id;
 
+    @Column(name = "name")
+    public String Name = "Lorem Ipsum";
+
     @ManyToMany(mappedBy = "Sets")
     public Set<Punishments> Punish;
 }
