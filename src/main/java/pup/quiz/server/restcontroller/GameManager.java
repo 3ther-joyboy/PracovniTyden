@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class GameManager {
 
     @PostMapping(value = "/create_game")
-    public String Create(@RequestParam String questionIds, @RequestParam String punishmentIds) {
+    public String CreateSession(@RequestParam String questionIds, @RequestParam String punishmentIds) {
         Long[] questionIdsArray = Arrays.stream(questionIds.split(","))
                 .map(Long::parseLong)
                 .toArray(Long[]::new);
@@ -22,5 +22,10 @@ public class GameManager {
         String code = SessionWorker.Generate(questionIdsArray, punishmentIdsArray);
 
         return code;
+    }
+
+    @PostMapping(value = "/{sessionId}/start")
+    public void StartSession() {
+
     }
 }
