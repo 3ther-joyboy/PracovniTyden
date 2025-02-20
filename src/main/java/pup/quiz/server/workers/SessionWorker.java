@@ -14,7 +14,9 @@ public class SessionWorker {
     @Autowired
     static PunismentSetRepo p_rep;
     @Autowired
-    static QuestionSetRepo q_rep;
+    static QuestionSetRepo qs_rep;
+    @Autowired
+    static QuestionRepo q_rep;
     @Autowired
     static UserRepo u_rep;
 
@@ -71,7 +73,7 @@ public class SessionWorker {
         ses.Code = Generator.GenerateCode();
 
         for (Long i : questions)
-            for (Question que : q_rep.findById(i).get().Questions) {
+            for (Question que : qs_rep.findById(i).get().Questions) {
                 ses.Questions.add(que);
             }
         for (Long i : punisments)

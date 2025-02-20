@@ -47,13 +47,17 @@ public class QuestionWorker {
     public static Long CreateQuestion(String question, String[] ans , boolean[] corr,Long set) {
         Question que = new Question();
         que.Question = question;
-        que.Set = qs_rep.findById(set).get();
 
         for (int i = 0; i < ans.length; i++) {
             Answer as = new Answer(ans[i],corr[i]);
             a_rep.save(as);
             que.Answers.add(as);
         }
-        return q_rep.save(que).Id;
+        Long id = q_rep.save(que).Id;
+
+        QuestionSets asdf = qs_rep.findById(set).get();
+        asdf.Questions.add(que);
+        qs_rep.save(asdf);
+        return id;
     }
 }
