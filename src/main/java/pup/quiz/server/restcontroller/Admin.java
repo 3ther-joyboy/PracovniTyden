@@ -90,14 +90,15 @@ public class Admin {
     public Long CreateQuestion(String question, String[] ans , boolean[] corr,Long set) {
         Question que = new Question();
         que.Question = question;
+        que.Set = qs_rep.findById(set).get();
+        Question a = q_rep.save(que);
 
         for (int i = 0; i < ans.length; i++) {
             Answer as = new Answer(ans[i],corr[i]);
+            as.question = a;
             a_rep.save(as);
-            que.Answers.add(as);
         }
-        que.Set = qs_rep.findById(set).get();
 
-        return q_rep.save(que).Id;
+        return a.Id;
     }
 }
