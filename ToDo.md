@@ -31,3 +31,4 @@ iterable > set/list/array, iterable je multifunkčnější ale nedá se moc dob�
 - joining already started session
 - you can answer one question twice
 - when too much people dont submit question, the same people get punished over and over again 
+- ppl can joini still after start

@@ -1,7 +1,5 @@
 package pup.quiz.server.model;
-import java.security.SecureRandom;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -18,7 +16,9 @@ public class Session {
     @Column(name = "code")
     public String Code;
 
-    @Column(name = "current_question")
+    // TODO (one to many connection)
+    @ManyToOne
+    @JoinColumn(name="current_question", nullable=false)
     public Question CurrentQuestion;
 
     @ManyToMany(mappedBy = "Sessions")
