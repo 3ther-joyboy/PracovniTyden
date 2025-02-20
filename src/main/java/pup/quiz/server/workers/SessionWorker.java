@@ -1,6 +1,7 @@
 package pup.quiz.server.workers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Service;
 import pup.quiz.server.Generator;
 import pup.quiz.server.model.*;
@@ -10,6 +11,7 @@ import java.time.Instant;
 import java.util.*;
 
 @Service
+@Configurable
 public class SessionWorker {
     @Autowired
     SessionRepo rep;
