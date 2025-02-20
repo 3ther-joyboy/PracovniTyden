@@ -19,12 +19,13 @@ public class GameManager {
                 .map(Long::parseLong)
                 .toArray(Long[]::new);
 
-        //String code = SessionWorker.Generate(questionIdsArray, punishmentIdsArray);
+        String code = SessionWorker.Generate(questionIdsArray, punishmentIdsArray).toString();
 
-        return "awdawda";
+        return code;
     }
 
     @PostMapping(value = "/{sessionId}/start")
     public void StartSession() {
+
     }
 }
