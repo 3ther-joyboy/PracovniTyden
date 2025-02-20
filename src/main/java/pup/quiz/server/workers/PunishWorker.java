@@ -1,9 +1,11 @@
 package pup.quiz.server.workers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pup.quiz.server.model.PunishmentsSets;
 import pup.quiz.server.repo.PunismentSetRepo;
 
+@Service
 public class PunishWorker {
     @Autowired
     private PunismentSetRepo p_rep;

@@ -1,6 +1,7 @@
 package pup.quiz.server.workers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pup.quiz.server.model.Answer;
 import pup.quiz.server.model.Question;
 import pup.quiz.server.model.QuestionSets;
@@ -11,6 +12,7 @@ import pup.quiz.server.repo.SessionRepo;
 
 import java.util.Set;
 
+@Service
 public class QuestionWorker {
     @Autowired
     QuestionSetRepo qs_rep;
