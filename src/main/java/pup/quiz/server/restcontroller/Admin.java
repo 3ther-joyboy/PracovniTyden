@@ -13,8 +13,12 @@ import java.util.Set;
 @RestController
 @RequestMapping("/admin")
 public class Admin {
-
     public static String Password = "1234";
+
+    @GetMapping(value = "get_question_sets/")
+    public Iterable<QuestionSets> getSets(){
+        return GetSets();
+    }
     @PostMapping(value = "/post_question/{question}/{answer}/{answer_2}/{answer_3}/{answer_4}/{password}/{set}")
     public Long PostQuestion(@PathVariable(name = "question") String question,
                              @PathVariable(name = "answer") String answer1,
