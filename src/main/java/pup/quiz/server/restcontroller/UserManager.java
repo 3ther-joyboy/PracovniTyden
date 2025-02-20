@@ -3,6 +3,8 @@ package pup.quiz.server.restcontroller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/sessions")
 public class UserManager {
@@ -18,8 +20,12 @@ public class UserManager {
         return ResponseEntity.ok("Successfully added to game!, Code: " + code + " Name: " + userName + " Icon: " + imgUrl);
     }
 
-    @PostMapping(value = "/{sessionId}/submit_answer")
-    public void Submit() {
+    @PostMapping(value = "/{code}/{index}/{userID}/submit_answer")
+    public void SubmitAnswer(@PathVariable(name = "code") String code,
+                             @PathVariable(name = "index") int index,
+                             @PathVariable(name = "userID") UUID id) {
+
+
 
     }
 }

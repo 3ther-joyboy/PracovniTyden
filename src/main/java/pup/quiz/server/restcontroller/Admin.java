@@ -37,16 +37,15 @@ public class Admin {
             System.out.printf("Answer 3: " + answer3 + "\n");
             System.out.printf("Answer 4: " + answer4 + "\n");
 
-
-
             return CreateQuestion(question, new String[]{answer1, answer2, answer3, answer4}, new boolean[]{true, false, false, false}, set);
         }
         return 0L;
     }
 
-
-
-
+    @GetMapping(value = "/create/{set}")
+    public void Create(@PathVariable(name = "set") String setName) {
+        CreateSet(setName);
+    }
 
 
     ///  WORKER
