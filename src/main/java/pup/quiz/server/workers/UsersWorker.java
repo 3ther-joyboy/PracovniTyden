@@ -9,7 +9,6 @@ import pup.quiz.server.repo.UserRepo;
 
 import java.util.Collections;
 
-@Component
 public class UsersWorker {
     @Autowired
     UserRepo repo;

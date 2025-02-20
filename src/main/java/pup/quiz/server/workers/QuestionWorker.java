@@ -14,18 +14,20 @@ import pup.quiz.server.repo.SessionRepo;
 
 import java.util.Set;
 
-@Component
 public class QuestionWorker {
+    static QuestionSetRepo qs_rep;
+    static QuestionRepo q_rep;
+    static AnswerRepo a_rep;
+    static SessionRepo s_rep;
     @Autowired
-    QuestionSetRepo qs_rep;
-    @Autowired
-    QuestionRepo q_rep;
-    @Autowired
-    AnswerRepo a_rep;
-    @Autowired
-    SessionRepo s_rep;
+    public QuestionWorker(QuestionSetRepo qs_rep, QuestionRepo q_rep, AnswerRepo a_rep, SessionRepo s_rep) {
+        this.qs_rep = qs_rep;
+        this.q_rep = q_rep;
+        this.a_rep = a_rep;
+        this.s_rep = s_rep;
+    }
 
-    public Boolean DeleteQuestion(Long question) {
+    public static Boolean DeleteQuestion(Long question) {
         try{
             q_rep.deleteById(question);
             return true;
@@ -34,21 +36,21 @@ public class QuestionWorker {
         return false;
     }
     // tady znova returni Iterable
-    public Iterable<Question> GetQuestion() {
+    public static Iterable<Question> GetQuestion() {
         return q_rep.findAll();
     }
-    public Iterable<QuestionSets> GetSets() {
+    public static Iterable<QuestionSets> GetSets() {
         return qs_rep.findAll();
     }
-    public Set<Question> GetQuestionFrom(String session) {
+    public static Set<Question> GetQuestionFrom(String session) {
         return s_rep.findByCode(session).Questions;
     }
-    public Long CreateSet(String name) {
+    public static Long CreateSet(String name) {
         QuestionSets set = new QuestionSets();
         set.Name = name;
         return qs_rep.save(set).Id;
     }
-    public Long CreateQuestion(String question, String[] ans , boolean[] corr,Long set) {
+    public static Long CreateQuestion(String question, String[] ans , boolean[] corr,Long set) {
         Question que = new Question();
         que.Question = question;
 

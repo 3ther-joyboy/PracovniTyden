@@ -11,20 +11,23 @@ import pup.quiz.server.repo.*;
 import java.time.Instant;
 import java.util.*;
 
-@Component
 public class SessionWorker {
-    @Autowired
-    SessionRepo rep;
-    @Autowired
-    PunismentSetRepo p_rep;
-    @Autowired
-    QuestionSetRepo qs_rep;
-    @Autowired
-    QuestionRepo q_rep;
-    @Autowired
-    UserRepo u_rep;
+    static SessionRepo rep;
+    static PunismentSetRepo p_rep;
+    static QuestionSetRepo qs_rep;
+    static QuestionRepo q_rep;
+    static UserRepo u_rep;
 
-    public UUID AddUser(String code,String pfp, String name) {
+    @Autowired
+    public SessionWorker(SessionRepo rep, PunismentSetRepo p_rep, QuestionSetRepo qs_rep ,QuestionRepo q_rep, UserRepo u_rep) {
+        this.rep = rep;
+        this.p_rep = p_rep;
+        this.qs_rep = qs_rep;
+        this.q_rep = q_rep;
+        this.u_rep = u_rep;
+    }
+
+    public static UUID AddUser(String code,String pfp, String name) {
         Session joiningSession = rep.findByCode(code);
         if(joiningSession != null) {
             User usr = new User();
@@ -37,7 +40,7 @@ public class SessionWorker {
         return null;
     }
     // "Start"
-    public void NextInQuestion(String SessionCode) {
+    public static void NextInQuestion(String SessionCode) {
         // TODO
         // vybere novou otázku a tu novou otázku odebere z listu možných otázek ze kterých vybýrá
         for (User i : GetUsersInSession(SessionCode)) {
@@ -45,17 +48,17 @@ public class SessionWorker {
             u_rep.save(i);
         }
     }
-    public Set<User> GetUsersInSession(String SessionCode) {
+    public static Set<User> GetUsersInSession(String SessionCode) {
         return rep.findByCode(SessionCode).Users;
     }
-    public Iterable<User> GetPunishedUsers(UUID code, int countOfPunished) {
+    public static Iterable<User> GetPunishedUsers(UUID code, int countOfPunished) {
         return u_rep.punishedUsers(code,countOfPunished);
     }
-    public Question GetCurrentQuestion(String SessionCode) {
+    public static Question GetCurrentQuestion(String SessionCode) {
         return rep.findByCode(SessionCode).CurrentQuestion;
     }
 
-    public void UserAnswer(String SessionCode,UUID userID,Long AnswerId) {
+    public static void UserAnswer(String SessionCode,UUID userID,Long AnswerId) {
         Long correct = q_rep.getCorrectAnswer(GetCurrentQuestion(SessionCode).Id,AnswerId);
         if(correct != null && correct == 1L) {
             User usr = u_rep.findById(userID).get();
@@ -69,10 +72,10 @@ public class SessionWorker {
 
         }
     }
-    public boolean SessionExists(String code) {
+    public static boolean SessionExists(String code) {
             return rep.findByCode(code) != null;
     }
-    public Session Generate(Long[] questions, Long[] punisments) {
+    public static Session Generate(Long[] questions, Long[] punisments) {
         Session ses = new Session();
         ses.Code = Generator.GenerateCode();
 

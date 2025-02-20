@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import pup.quiz.server.model.PunishmentsSets;
 import pup.quiz.server.repo.PunismentSetRepo;
 
-@Component
 public class PunishWorker {
     @Autowired
     private PunismentSetRepo p_rep;
