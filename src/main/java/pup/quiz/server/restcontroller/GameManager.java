@@ -71,7 +71,7 @@ public class GameManager {
         Session s = rep.findByCode(SessionCode);
         Question q = q_rep.randomInSession(s.Id);
         s.CurrentQuestion = q;
-        s.Questions.remove(s);
+        s.Questions.remove(q);
         rep.save(s);
         for (User i : GetUsersInSession(SessionCode)) {
             i.punishTimestamp = Instant.MAX;
@@ -96,12 +96,14 @@ public class GameManager {
 
         for (Long i : questions)
             for (Question que : qs_rep.findById(i).get().Questions) {
+                ses.CurrentQuestion = que;
                 ses.Questions.add(que);
             }
         for (Long i : punisments)
             for (Punishments pun : p_rep.findById(i).get().Punish) {
                 ses.Punisment.add(pun);
             }
+
         rep.save(ses);
         return ses;
     }

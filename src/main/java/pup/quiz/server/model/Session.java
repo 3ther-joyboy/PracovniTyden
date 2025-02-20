@@ -17,7 +17,7 @@ public class Session {
     public String Code;
 
     @ManyToOne
-    @JoinColumn(name="current_question")
+    @JoinColumn(name="current_question", nullable=false)
     public Question CurrentQuestion;
 
     @ManyToMany(mappedBy = "Sessions")
