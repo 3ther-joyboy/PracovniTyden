@@ -45,10 +45,9 @@ public class QuestionWorker {
         return qs_rep.save(set).Id;
     }
     public static Long CreateQuestion(String question, String[] ans , boolean[] corr,Long set) {
-        // TODO
-        // connect to a question set
         Question que = new Question();
         que.Question = question;
+        que.Set = qs_rep.findById(set).get();
 
         for (int i = 0; i < ans.length; i++) {
             Answer as = new Answer(ans[i],corr[i]);
